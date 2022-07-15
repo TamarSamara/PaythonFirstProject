@@ -1,3 +1,4 @@
+import fileinput
 def password_validate(password):
     pass_lower, pass_upper, pass_special, pass_digits = 0, 0, 0, 0
     # Length – minimum of 10 characters.
@@ -39,11 +40,11 @@ def password_validate(password):
 
 
 def main():
-    password = input("Enter the Password: ")
-    if password_validate(password) == 0:
-        print("\033[92m {}\033[00m".format("Valid Password"))
-    else:
-        print("\033[91m {}\033[00m".format("Invalid Password"))
+    for line in fileinput.input():
+        if password_validate(line) == 0:
+            print("\033[92m {}\033[00m".format("Valid Password"))
+        else:
+            print("\033[91m {}\033[00m".format("Invalid Password"))
 
 
 if __name__ == '__main__':
